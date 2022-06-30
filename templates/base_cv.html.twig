@@ -1,0 +1,113 @@
+
+<!doctype html>
+<html class="no-js " lang="fr">
+
+
+<head>
+<title>:: HelloJob :: {% block title %} Home {% endblock %}</title>
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap/js/bootstrap.min.js')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/charts-c3/plugin.css')}}"/>
+<link href="{{asset('asset/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet" />
+<link href="{{asset('asset/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+<link rel="stylesheet" href="{{asset('assets/plugins/morrisjs/morris.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/css/style.min.css')}}" />
+
+ {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+{% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+</head>
+
+<body class="theme-blush">
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+<!-- Main Search -->
+<div id="search">
+    <button id="close" type="button" class="close btn btn-primary btn-icon btn-icon-mini btn-round">x</button>
+    <form>
+      <input type="search" value="" placeholder="Search..." />
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+<!-- Right Icon menu Sidebar -->
+
+
+<!-- Left Sidebar -->
+<aside id="leftsidebar" class="sidebar">
+    <div class="navbar-brand">
+        <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
+        <a href=""><img src="{{asset('assets/images/logo.svg')}}" width="25" alt="Aero"><span class="m-l-10">HelloJob</span></a>
+    </div>
+    <div class="menu">
+        <ul class="list">
+            <li>
+                <div class="user-info">
+                    <a class="image" href="">
+                        <span class="zmdi zmdi-account-circle" style="font-size:4em ;"></span>
+                    </a>
+                    <div class="detail">
+
+                        <small>Admin user</small>
+                    </div>
+                </div>
+            </li>
+            <li class=""><a href="{{ path('app_home') }}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+           <li><a href="" class="{{ path('app_cv') }}"><i class="zmdi zmdi-apps"></i><span>Créer CV</span></a>
+
+            </li>
+            <li class=""><a href="{{ path('app_offre') }}"><i class="zmdi zmdi-home"></i><span>Voir les offres</span></a></li>
+
+        </ul>
+    </div>
+</aside>
+
+<!-- Right Sidebar -->
+
+
+<!-- Main Content -->
+
+<section class="content">
+  {% block body %}
+
+  {% endblock %}
+</section>
+
+
+<!-- Jquery Core Js -->
+
+<!-- Jquery Core Js -->
+<script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js -->
+<script src="{{asset('assets/bundles/vendorscripts.bundle.js')}}"></script> <!-- Lib Scripts Plugin Js -->
+
+<!-- Jquery DataTable Plugin Js -->
+<script src="assets/bundles/datatablescripts.bundle.js"></script>
+<script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.colVis.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.flash.min.js')}}"></script>
+<script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.html5.min.js')}}"></script>
+<script src="assets/plugins/jquery-datatable/buttons/buttons.print.min.js"></script>
+
+<script src="assets/bundles/mainscripts.bundle.js"></script><!-- Custom Js -->
+<script src="{{asset('assets/js/pages/tables/jquery-datatable.js')}}"></script>
+
+</body>
+
+
+</html>
