@@ -1,0 +1,181 @@
+
+<!doctype html>
+<html class="no-js " lang="fr">
+
+
+<head>
+<title>:: HelloJob :: {% block title %} Home {% endblock %}</title>
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/charts-c3/plugin.css')}}"/>
+<link href="{{asset('asset/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet" />
+<link href="{{asset('asset/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+<link rel="stylesheet" href="{{asset('assets/plugins/morrisjs/morris.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/css/style.min.css')}}" />
+
+ {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+{% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+</head>
+
+<body class="theme-blush">
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+<!-- Main Search -->
+<div id="search">
+    <button id="close" type="button" class="close btn btn-primary btn-icon btn-icon-mini btn-round">x</button>
+    <form>
+      <input type="search" value="" placeholder="Search..." />
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+<!-- Right Icon menu Sidebar -->
+<div class="navbar-right">
+    <ul class="navbar-nav">
+        <li><a href="#search" class="main_search" title="Search..."><i class="zmdi zmdi-search"></i></a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0);" class="dropdown-toggle" title="Notifications" data-toggle="dropdown" role="button"><i class="zmdi zmdi-notifications"></i>
+                <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
+            </a>
+            <ul class="dropdown-menu slideUp2">
+                <li class="header">Notifications</li>
+                <li class="body">
+                    <ul class="menu list-unstyled">
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="icon-circle bg-blue"><i class="zmdi zmdi-account"></i></div>
+                                <div class="menu-info">
+                                    <h4>8 New Members joined</h4>
+                                    <p><i class="zmdi zmdi-time"></i> 14 mins ago </p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="icon-circle bg-amber"><i class="zmdi zmdi-shopping-cart"></i></div>
+                                <div class="menu-info">
+                                    <h4>4 Sales made</h4>
+                                    <p><i class="zmdi zmdi-time"></i> 22 mins ago </p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="icon-circle bg-red"><i class="zmdi zmdi-delete"></i></div>
+                                <div class="menu-info">
+                                    <h4><b>Nancy Doe</b> Deleted account</h4>
+                                    <p><i class="zmdi zmdi-time"></i> 3 hours ago </p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="icon-circle bg-green"><i class="zmdi zmdi-edit"></i></div>
+                                <div class="menu-info">
+                                    <h4><b>Nancy</b> Changed name</h4>
+                                    <p><i class="zmdi zmdi-time"></i> 2 hours ago </p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="icon-circle bg-grey"><i class="zmdi zmdi-comment-text"></i></div>
+                                <div class="menu-info">
+                                    <h4><b>John</b> Commented your post</h4>
+                                    <p><i class="zmdi zmdi-time"></i> 4 hours ago </p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="icon-circle bg-purple"><i class="zmdi zmdi-refresh"></i></div>
+                                <div class="menu-info">
+                                    <h4><b>John</b> Updated status</h4>
+                                    <p><i class="zmdi zmdi-time"></i> 3 hours ago </p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript:void(0);">
+                                <div class="icon-circle bg-light-blue"><i class="zmdi zmdi-settings"></i></div>
+                                <div class="menu-info">
+                                    <h4>Settings Updated</h4>
+                                    <p><i class="zmdi zmdi-time"></i> Yesterday </p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="footer"> <a href="javascript:void(0);">View All Notifications</a> </li>
+            </ul>
+        </li>
+       <li><a href="{{path('app_logout')}}" class="mega-menu" title="Sign Out"><i class="zmdi zmdi-power"></i></a></li>
+       
+    </ul>
+</div>
+
+
+<!-- Left Sidebar -->
+<aside id="leftsidebar" class="sidebar">
+    <div class="navbar-brand">
+        <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
+        <a href=""><img src="{{asset('assets/images/logo.svg')}}" width="25" alt="Aero"><span class="m-l-10">HelloJob</span></a>
+    </div>
+    <div class="menu">
+        <ul class="list">
+            <li>
+                <div class="user-info">
+                    <a class="image" href="">
+                        <span class="zmdi zmdi-account-circle" style="font-size:4em ;"></span>
+                    </a>
+                    <div class="detail">
+
+                        <small>Admin user</small>
+                    </div>
+                </div>
+            </li>
+            <li class="active open"><a href="{{ path('app_home') }}"><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+            <li><a href="{{ path('app_cv') }}" class=""><i class="zmdi zmdi-apps"></i><span>Créer CV</span></a>
+
+             </li>
+             <li class=""><a href="{{ path('app_offre_index') }}"><i class="zmdi zmdi-home"></i><span>Gérer les offres</span></a></li>
+
+
+        </ul>
+    </div>
+</aside>
+
+<!-- Right Sidebar -->
+
+
+<!-- Main Content -->
+
+<section class="content">
+  {% block body %}
+
+  {% endblock %}
+</section>
+
+
+<!-- Jquery Core Js -->
+
+
+</body>
+
+
+</html>

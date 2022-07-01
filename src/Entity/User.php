@@ -32,6 +32,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 128)]
     private $prenom;
 
+    #[ORM\OneToOne(inversedBy: 'user', targetEntity: Admin::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $Admin;
+
+    #[ORM\OneToOne(inversedBy: 'user', targetEntity: Refugier::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $Refugier;
+
+    #[ORM\OneToOne(inversedBy: 'user', targetEntity: Entreprise::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $Entreprise;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -122,6 +134,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
+
+        return $this;
+    }
+
+    public function getAdmin(): ?Admin
+    {
+        return $this->Admin;
+    }
+
+    public function setAdmin(Admin $Admin): self
+    {
+        $this->Admin = $Admin;
+
+        return $this;
+    }
+
+    public function getRefugier(): ?Refugier
+    {
+        return $this->Refugier;
+    }
+
+    public function setRefugier(Refugier $Refugier): self
+    {
+        $this->Refugier = $Refugier;
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->Entreprise;
+    }
+
+    public function setEntreprise(Entreprise $Entreprise): self
+    {
+        $this->Entreprise = $Entreprise;
 
         return $this;
     }

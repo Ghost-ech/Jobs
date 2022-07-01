@@ -8,48 +8,205 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-<div class="container">
-              <div class="row">
-                <div class="col_sm_4">
-                <ul class="nav nav-pills">
-                  <li class="active"><a data-toggle="pill" href="#home">Home</a></li>
-                  <li><a data-toggle="pill" href="#menu1">Menu 1</a></li>
-                  <li><a data-toggle="pill" href="#menu2">Menu 2</a></li>
-                  <li><a data-toggle="pill" href="#menu3">Menu 3</a></li>
-                </ul>
+    <div class="body">
+        <h1>Remplir Mon CV</h1>
 
-                <div class="tab-content">
-                  <div id="home" class="tab-pane fade in active">
-                    <h3>HOME</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+              <!-- Nav tabs -->
+              <ul class="nav nav-tabs p-0 mb-3">
+                  <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#info">Informartion personnel</a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#comp">Compétence</a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#expe">Expérience</a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#lang">Langue</a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#diplome">Diplome</a></li>
+                  <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#loisirs">Loisirs</a></li>
+              </ul>                        
+              <!-- Tab panes -->
+              <div class="tab-content">
+                  <div role="tabpanel" class="tab-pane in active" id="info">
+                      <b>Information Personnel</b>
+                      <form action="">
+                      <div class="body">
+                        <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nom Complet" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Quartier" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Ville" required>
+                                </div>
+                            </div>                               
+                        </div>
+                        <div class="row">
+                          <div class="col-lg-4 col-md-12">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Status matrimonial" required>
+                              </div>
+                          </div>
+                          <div class="col-lg-4 col-md-12">
+                              <div class="form-group">
+                                  <input type="number" class="form-control" placeholder="Numéro de telephone" required>
+                              </div>
+                          </div>
+                          <div class="col-lg-4 col-md-12">
+                              <div class="form-group">
+                                  <input type="email" class="form-control" placeholder="email" required>
+                              </div>
+                          </div>
+                          <div class="col-12">
+                              <button class="btn btn-info">Sauvegarder les modifications</button>
+                          </div>                                
+                        </div>                                
+                    </div>
+                  </form>
                   </div>
-                  <div id="menu1" class="tab-pane fade">
-                    <h3>Menu 1</h3>
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  <div role="tabpanel" class="tab-pane" id="comp">
+                      <b>Mes Compétence</b>
+                      <form action="">
+                        <div class="body">
+                          
+                          <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nom de la compétence" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" placeholder="Niveau de maitrise sur 10" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="button" class="btn btn-outline-success" Value="Ajouter">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-info">Sauvegarder les modifications</button>
+                            </div>                                
+                          </div>                                
+                      </div>
+                    </form>
                   </div>
-                  <div id="menu2" class="tab-pane fade">
-                    <h3>Menu 2</h3>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                  <div role="tabpanel" class="tab-pane" id="expe">
+                      <b>Mes expériences</b>
+                      <form action="">
+                        <div class="body">
+                          
+                          <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nom de l'expérience" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="date" class="form-control" placeholder="date" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Poste occupé" required>
+                              </div>
+                          </div>
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <input type="button" class="btn btn-outline-success" Value="Ajouter">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-info">Sauvegarder les modifications</button>
+                            </div>                                
+                          </div>                                
+                      </div>
+                    </form>
                   </div>
-                  <div id="menu3" class="tab-pane fade">
-                    <h3>Menu 3</h3>
-                    <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                  <div role="tabpanel" class="tab-pane" id="lang">
+                      <b>Langue</b>
+                      <form action="">
+                        <div class="body">
+                          
+                          <div class="row">
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Nom de la langue" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="number" class="form-control" placeholder="Niveau de maitrise sur 10" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-12">
+                                <div class="form-group">
+                                    <input type="button" class="btn btn-outline-success" Value="Ajouter">
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <button class="btn btn-info">Sauvegarder les modifications</button>
+                            </div>                                
+                          </div>                                
+                      </div>
+                    </form>
                   </div>
+                  <div role="tabpanel" class="tab-pane" id="diplome">
+                    <b>Diplome</b>
+                    <form action="">
+                      <div class="body">
+                        
+                        <div class="row">
+                          <div class="col-lg-4 col-md-12">
+                              <div class="form-group">
+                                  <input type="text" class="form-control" placeholder="Nom dernier diplome" required>
+                              </div>
+                          </div>
+                          <div class="col-lg-4 col-md-12">
+                              <div class="form-group">
+                                  <input type="date" class="form-control" placeholder="Année d'obtention" required>
+                              </div>
+                          </div>
+                          <div class="col-lg-4 col-md-12">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="école" required>
+                            </div>
+                        </div>
+                          <div class="col-12">
+                              <div class="form-group">
+                                  <input type="button" class="btn btn-outline-success" Value="Ajouter">
+                              </div>
+                          </div>
+                          <div class="col-12">
+                              <button class="btn btn-info">Sauvegarder les modifications</button>
+                          </div>                                
+                        </div>                                
+                    </div>
+                  </form>
                 </div>
-                </div>
-                <div class="col_sm_8">
-
-                </div>
+                <div role="tabpanel" class="tab-pane" id="loisirs">
+                  <b>Loisirs</b>
+                  <form action="">
+                    <div class="body">
+                      
+                      <div class="row">
+                        <div class="col-lg-4 col-md-12">
+                            <div class="form-group">
+                                <textarea class="form-control" placeholder="--Mes differents Loisirs--" cols="25" rows="15"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-info">Sauvegarder les modifications</button>
+                        </div>                                
+                      </div>                                
+                  </div>
+                </form>
               </div>
-            </div>
+              </div>
+          </div>
 
-<script>
-$(document).ready(function(){
-  $("button").click(function(){
-    $("div").animate({left: '250px'});
-  });
-});
-</script>
-
-<div style="background:#98bf21;height:100px;width:100px;position:absolute;"></div>
 {% endblock %}

@@ -16,8 +16,28 @@ class Admin
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[ORM\OneToOne(mappedBy: 'Admin', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        // set the owning side of the relation if necessary
+        if ($user->getAdmin() !== $this) {
+            $user->setAdmin($this);
+        }
+
+        $this->user = $user;
+
+        return $this;
     }
 }
