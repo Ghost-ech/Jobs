@@ -22,6 +22,10 @@ class Offre
     #[ORM\Column(type: 'string', length: 200)]
     private $info_supp;
 
+    #[ORM\ManyToOne(targetEntity: Entreprise::class, inversedBy: 'offres')]
+    #[ORM\JoinColumn(nullable: false)]
+    private $Entreprise;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +63,18 @@ class Offre
     public function setInfoSupp(string $info_supp): self
     {
         $this->info_supp = $info_supp;
+
+        return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->Entreprise;
+    }
+
+    public function setEntreprise(?Entreprise $Entreprise): self
+    {
+        $this->Entreprise = $Entreprise;
 
         return $this;
     }

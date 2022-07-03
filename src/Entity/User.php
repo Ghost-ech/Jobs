@@ -32,17 +32,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 128)]
     private $prenom;
 
-    #[ORM\OneToOne(inversedBy: 'user', targetEntity: Admin::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $Admin;
+    #[ORM\OneToOne(mappedBy: 'User', targetEntity: Refugier::class, cascade: ['persist', 'remove'])]
+    private $refugier;
 
-    #[ORM\OneToOne(inversedBy: 'user', targetEntity: Refugier::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $Refugier;
+    #[ORM\OneToOne(mappedBy: 'User', targetEntity: Entreprise::class, cascade: ['persist', 'remove'])]
+    private $entreprise;
 
-    #[ORM\OneToOne(inversedBy: 'user', targetEntity: Entreprise::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $Entreprise;
+    
+
 
     public function getId(): ?int
     {
@@ -138,39 +135,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getAdmin(): ?Admin
-    {
-        return $this->Admin;
-    }
-
-    public function setAdmin(Admin $Admin): self
-    {
-        $this->Admin = $Admin;
-
-        return $this;
-    }
-
     public function getRefugier(): ?Refugier
     {
-        return $this->Refugier;
+        return $this->refugier;
     }
 
-    public function setRefugier(Refugier $Refugier): self
+    public function setRefugier(Refugier $refugier): self
     {
-        $this->Refugier = $Refugier;
+        // set the owning side of the relation if necessary
+        if ($refugier->getUser() !== $this) {
+            $refugier->setUser($this);
+        }
+
+        $this->refugier = $refugier;
 
         return $this;
     }
 
     public function getEntreprise(): ?Entreprise
     {
-        return $this->Entreprise;
+        return $this->entreprise;
     }
 
-    public function setEntreprise(Entreprise $Entreprise): self
+    public function setEntreprise(Entreprise $entreprise): self
     {
-        $this->Entreprise = $Entreprise;
+        // set the owning side of the relation if necessary
+        if ($entreprise->getUser() !== $this) {
+            $entreprise->setUser($this);
+        }
+
+        $this->entreprise = $entreprise;
 
         return $this;
     }
+
 }

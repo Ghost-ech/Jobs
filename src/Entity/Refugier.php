@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\RefugierRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: RefugierRepository::class)]
@@ -16,8 +18,17 @@ class Refugier
     #[ORM\Column(type: 'string', length: 200)]
     private $info_supp;
 
-    #[ORM\OneToOne(mappedBy: 'Refugier', targetEntity: User::class, cascade: ['persist', 'remove'])]
-    private $user;
+    #[ORM\OneToMany(mappedBy: 'Refugier', targetEntity: Cv::class)]
+    private $cvs;
+
+    #[ORM\OneToOne(inversedBy: 'refugier', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $User;
+
+    public function __construct()
+    {
+        $this->cvs = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -36,19 +47,45 @@ class Refugier
         return $this;
     }
 
-    public function getUser(): ?User
+
+    /**
+     * @return Collection<int, Cv>
+     */
+    public function getCvs(): Collection
     {
-        return $this->user;
+        return $this->cvs;
     }
 
-    public function setUser(User $user): self
+    public function addCv(Cv $cv): self
     {
-        // set the owning side of the relation if necessary
-        if ($user->getRefugier() !== $this) {
-            $user->setRefugier($this);
+        if (!$this->cvs->contains($cv)) {
+            $this->cvs[] = $cv;
+            $cv->setRefugier($this);
         }
 
-        $this->user = $user;
+        return $this;
+    }
+
+    public function removeCv(Cv $cv): self
+    {
+        if ($this->cvs->removeElement($cv)) {
+            // set the owning side to null (unless already changed)
+            if ($cv->getRefugier() === $this) {
+                $cv->setRefugier(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\EntrepriseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EntrepriseRepository::class)]
@@ -16,8 +18,17 @@ class Entreprise
     #[ORM\Column(type: 'string', length: 200)]
     private $info_supp;
 
-    #[ORM\OneToOne(mappedBy: 'Entreprise', targetEntity: User::class, cascade: ['persist', 'remove'])]
-    private $user;
+    #[ORM\OneToMany(mappedBy: 'Entreprise', targetEntity: Offre::class)]
+    private $offres;
+
+    #[ORM\OneToOne(inversedBy: 'entreprise', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $User;
+
+    public function __construct()
+    {
+        $this->offres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -36,19 +47,45 @@ class Entreprise
         return $this;
     }
 
-    public function getUser(): ?User
+
+    /**
+     * @return Collection<int, Offre>
+     */
+    public function getOffres(): Collection
     {
-        return $this->user;
+        return $this->offres;
     }
 
-    public function setUser(User $user): self
+    public function addOffre(Offre $offre): self
     {
-        // set the owning side of the relation if necessary
-        if ($user->getEntreprise() !== $this) {
-            $user->setEntreprise($this);
+        if (!$this->offres->contains($offre)) {
+            $this->offres[] = $offre;
+            $offre->setEntreprise($this);
         }
 
-        $this->user = $user;
+        return $this;
+    }
+
+    public function removeOffre(Offre $offre): self
+    {
+        if ($this->offres->removeElement($offre)) {
+            // set the owning side to null (unless already changed)
+            if ($offre->getEntreprise() === $this) {
+                $offre->setEntreprise(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }
