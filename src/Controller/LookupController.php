@@ -25,7 +25,7 @@ class LookupController extends AbstractController
     }
 
     if($this->getUser()->getRoles()[0] == 'ROLE_USER'){
-        return $this->redirectToRoute('app_home');
+        return $this->redirectToRoute('app_refugier');
     }
 
     if($this->getUser() -> getRoles()[0] == 'ROLE_ENTREPRISE'){

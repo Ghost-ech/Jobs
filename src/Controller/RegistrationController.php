@@ -42,6 +42,10 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/init", name="app_init")
+     */
     public function init(Request $request, UserPasswordHasherInterface $userPasswordHasher,UserRepository $userRepo,EntityManagerInterface $entityManager){
 
         $user = new User();
