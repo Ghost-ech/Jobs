@@ -21,9 +21,11 @@ class Entreprise
     #[ORM\OneToMany(mappedBy: 'Entreprise', targetEntity: Offre::class)]
     private $offres;
 
-    #[ORM\OneToOne(inversedBy: 'entreprise', targetEntity: User::class, cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private $User;
+    #[ORM\Column(type: 'string', length: 200)]
+    private $nom_entreprise;
+
+    #[ORM\Column(type: 'string', length: 200)]
+    private $localisation;
 
     public function __construct()
     {
@@ -56,36 +58,27 @@ class Entreprise
         return $this->offres;
     }
 
-    public function addOffre(Offre $offre): self
+
+    public function getNomEntreprise(): ?string
     {
-        if (!$this->offres->contains($offre)) {
-            $this->offres[] = $offre;
-            $offre->setEntreprise($this);
-        }
+        return $this->nom_entreprise;
+    }
+
+    public function setNomEntreprise(string $nom_entreprise): self
+    {
+        $this->nom_entreprise = $nom_entreprise;
 
         return $this;
     }
 
-    public function removeOffre(Offre $offre): self
+    public function getLocalisation(): ?string
     {
-        if ($this->offres->removeElement($offre)) {
-            // set the owning side to null (unless already changed)
-            if ($offre->getEntreprise() === $this) {
-                $offre->setEntreprise(null);
-            }
-        }
-
-        return $this;
+        return $this->localisation;
     }
 
-    public function getUser(): ?User
+    public function setLocalisation(string $localisation): self
     {
-        return $this->User;
-    }
-
-    public function setUser(User $User): self
-    {
-        $this->User = $User;
+        $this->localisation = $localisation;
 
         return $this;
     }

@@ -46,12 +46,16 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/init", name="app_init")
      */
-    public function init(Request $request, UserPasswordHasherInterface $userPasswordHasher,UserRepository $userRepo,EntityManagerInterface $entityManager){
+    public function init(Request $request, UserPasswordHasherInterface $userPasswordHasher,UserRepository $userRepo,EntityManagerInterface $entityManager)
+    {
 
         $user = new User();
 
         $user->setNom('Yan');
         $user->setPrenom('Keumoe');
+        $user->setPhone('655027252');
+        $user->setResidence('Douala');
+        $user->setBiographie('Programmer et passionner des nouvelles technologies');
         $user->setRoles(["ROLE_ADMIN"]);
         $user->setPassword(
             $userPasswordHasher->hashPassword(
@@ -70,4 +74,36 @@ class RegistrationController extends AbstractController
         return $this->redirectToRoute('app_admin');
 
     }
+
+    /**
+     * @Route("/ent", name="app_ent")
+     */
+    public function ent(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserRepository $userRepo, EntityManagerInterface $entityManager)
+    {
+
+        $user = new User();
+
+        $user->setNom('Yan');
+        $user->setPrenom('Keumoe');
+        $user->setPhone('655027252');
+        $user->setResidence('Douala');
+        $user->setBiographie('Programmer et passionner des nouvelles technologies');
+        $user->setRoles(["ROLE_ENTREPRISE"]);
+        $user->setPassword(
+            $userPasswordHasher->hashPassword(
+                $user,
+                'azerty'
+            )
+        );
+
+        $user->setEmail('ghost@gmail.com');
+
+        // $userRepo->add($user);
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+
+        return $this->redirectToRoute('app_entreprise');
+    }
+
 }

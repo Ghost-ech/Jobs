@@ -2,27 +2,26 @@
 
 namespace App\Form;
 
-use App\Entity\Offre;
+use App\Entity\Entreprise;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class OffreType extends AbstractType
+class EntrepriseType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom_offre')
-            ->add('type_offre')
             ->add('info_supp')
-            ->add('lien_offre')
+            ->add('nom_entreprise')
+            ->add('localisation')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Offre::class,
+            'data_class' => Entreprise::class,
         ]);
     }
 }

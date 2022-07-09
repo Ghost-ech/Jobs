@@ -1,4 +1,4 @@
-{% extends 'base_offre.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block title %}Offre index{% endblock %}
 
@@ -12,6 +12,7 @@
                 <th>Nom_offre</th>
                 <th>Type_offre</th>
                 <th>Info_supp</th>
+                <th>Lien_offre</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ offre.nomOffre }}</td>
                 <td>{{ offre.typeOffre }}</td>
                 <td>{{ offre.infoSupp }}</td>
+                <td>{{ offre.lienOffre }}</td>
                 <td>
                     <a href="{{ path('app_offre_show', {'id': offre.id}) }}">show</a>
                     <a href="{{ path('app_offre_edit', {'id': offre.id}) }}">edit</a>
@@ -29,11 +31,12 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('app_offre_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

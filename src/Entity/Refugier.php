@@ -21,9 +21,10 @@ class Refugier
     #[ORM\OneToMany(mappedBy: 'Refugier', targetEntity: Cv::class)]
     private $cvs;
 
-    #[ORM\OneToOne(inversedBy: 'refugier', targetEntity: User::class, cascade: ['persist', 'remove'])]
+
+    #[ORM\ManyToOne(targetEntity: Cv::class, inversedBy: 'refugiers')]
     #[ORM\JoinColumn(nullable: false)]
-    private $User;
+    private $Cv;
 
     public function __construct()
     {
@@ -56,36 +57,15 @@ class Refugier
         return $this->cvs;
     }
 
-    public function addCv(Cv $cv): self
-    {
-        if (!$this->cvs->contains($cv)) {
-            $this->cvs[] = $cv;
-            $cv->setRefugier($this);
-        }
 
-        return $this;
+    public function getCv(): ?Cv
+    {
+        return $this->Cv;
     }
 
-    public function removeCv(Cv $cv): self
+    public function setCv(?Cv $Cv): self
     {
-        if ($this->cvs->removeElement($cv)) {
-            // set the owning side to null (unless already changed)
-            if ($cv->getRefugier() === $this) {
-                $cv->setRefugier(null);
-            }
-        }
-
-        return $this;
-    }
-
-    public function getUser(): ?User
-    {
-        return $this->User;
-    }
-
-    public function setUser(User $User): self
-    {
-        $this->User = $User;
+        $this->Cv = $Cv;
 
         return $this;
     }

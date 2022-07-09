@@ -21,4 +21,12 @@ class RefugierController extends AbstractController
             'controller_name' => 'RefugierController',
         ]);
     }
+
+    #[Route('/', name: 'app_edit_profil')]
+    public function edit_profil(): Response
+    {
+        return $this->render('refugier/edit_profil.html.twig', [
+            'controller_name' => 'RefugierController',
+        ]);
+    }
 }

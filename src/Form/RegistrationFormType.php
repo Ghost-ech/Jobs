@@ -59,6 +59,24 @@ class RegistrationFormType extends AbstractType
                     'class' => 'form-control'
                 ]
             ])
+
+            ->add('residence', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+
+            ->add('biographie', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
+
+            ->add('phone', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ]
+            ])
         ;
     }
 

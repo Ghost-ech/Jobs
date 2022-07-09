@@ -1,19 +1,39 @@
-{% extends 'base_entreprise.html.twig' %}
+{% extends 'base.html.twig' %}
 
-{% block title %}Hello Entreprise!{% endblock %}
+{% block title %}Entreprise index{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <h1>Entreprise index</h1>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-    <p>l'Entreprise fait dans
-        <p></p>
-    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Info_supp</th>
+                <th>Nom_entreprise</th>
+                <th>Localisation</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entreprise in entreprises %}
+            <tr>
+                <td>{{ entreprise.id }}</td>
+                <td>{{ entreprise.infoSupp }}</td>
+                <td>{{ entreprise.nomEntreprise }}</td>
+                <td>{{ entreprise.localisation }}</td>
+                <td>
+                    <a href="{{ path('app_entreprise_show', {'id': entreprise.id}) }}">show</a>
+                    <a href="{{ path('app_entreprise_edit', {'id': entreprise.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
 
-    
-</div>
+    <a href="{{ path('app_entreprise_new') }}">Create new</a>
 {% endblock %}

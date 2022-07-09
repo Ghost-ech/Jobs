@@ -22,9 +22,9 @@ class Offre
     #[ORM\Column(type: 'string', length: 200)]
     private $info_supp;
 
-    #[ORM\ManyToOne(targetEntity: Entreprise::class, inversedBy: 'offres')]
-    #[ORM\JoinColumn(nullable: false)]
-    private $Entreprise;
+
+    #[ORM\Column(type: 'string', length: 200, nullable: true)]
+    private $lien_offre;
 
     public function getId(): ?int
     {
@@ -67,14 +67,15 @@ class Offre
         return $this;
     }
 
-    public function getEntreprise(): ?Entreprise
+
+    public function getLienOffre(): ?string
     {
-        return $this->Entreprise;
+        return $this->lien_offre;
     }
 
-    public function setEntreprise(?Entreprise $Entreprise): self
+    public function setLienOffre(?string $lien_offre): self
     {
-        $this->Entreprise = $Entreprise;
+        $this->lien_offre = $lien_offre;
 
         return $this;
     }

@@ -145,7 +145,7 @@
                     </a>
                     <div class="detail">
 
-                        <small>Admin user</small>
+                        <small>{{app.user.nom}} {{app.user.prenom}}</small>
                     </div>
                 </div>
             </li>
@@ -153,7 +153,14 @@
             <li><a href="{{ path('app_cv') }}" class=""><i class="zmdi zmdi-apps"></i><span>Créer CV</span></a>
 
              </li>
-             <li class=""><a href="{{ path('app_offre_index') }}"><i class="zmdi zmdi-home"></i><span>Voir les offres</span></a></li>
+             {% if is_granted('ROLE_ADMIN') %}
+             <li class=""><a href="{{ path('app_offre_index') }}"><i class="zmdi zmdi-home"></i><span>Gérer les offres</span></a></li>
+             {% endif %}
+            
+
+             {% if is_granted('ROLE_ADMIN') %}
+               <li class=""><a href="{{ path('app_entreprise_new') }}"><i class="zmdi zmdi-home"></i><span>Gérer les entreprises</span></a></li>
+            {% endif %}
 
 
         </ul>

@@ -4,12 +4,12 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -32,12 +32,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'string', length: 128)]
     private $prenom;
 
-    #[ORM\OneToOne(mappedBy: 'User', targetEntity: Refugier::class, cascade: ['persist', 'remove'])]
-    private $refugier;
 
-    #[ORM\OneToOne(mappedBy: 'User', targetEntity: Entreprise::class, cascade: ['persist', 'remove'])]
-    private $entreprise;
+    #[ORM\Column(type: 'integer')]
+    private $phone;
 
+    #[ORM\Column(type: 'string', length: 200)]
+    private $residence;
+
+    #[ORM\Column(type: 'string', length: 300)]
+    private $biographie;
+
+   
     
 
 
@@ -135,36 +140,40 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getRefugier(): ?Refugier
+
+
+    public function getPhone(): ?int
     {
-        return $this->refugier;
+        return $this->phone;
     }
 
-    public function setRefugier(Refugier $refugier): self
+    public function setPhone(int $phone): self
     {
-        // set the owning side of the relation if necessary
-        if ($refugier->getUser() !== $this) {
-            $refugier->setUser($this);
-        }
-
-        $this->refugier = $refugier;
+        $this->phone = $phone;
 
         return $this;
     }
 
-    public function getEntreprise(): ?Entreprise
+    public function getResidence(): ?string
     {
-        return $this->entreprise;
+        return $this->residence;
     }
 
-    public function setEntreprise(Entreprise $entreprise): self
+    public function setResidence(string $residence): self
     {
-        // set the owning side of the relation if necessary
-        if ($entreprise->getUser() !== $this) {
-            $entreprise->setUser($this);
-        }
+        $this->residence = $residence;
 
-        $this->entreprise = $entreprise;
+        return $this;
+    }
+
+    public function getBiographie(): ?string
+    {
+        return $this->biographie;
+    }
+
+    public function setBiographie(string $biographie): self
+    {
+        $this->biographie = $biographie;
 
         return $this;
     }

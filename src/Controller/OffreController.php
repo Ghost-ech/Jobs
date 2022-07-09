@@ -11,11 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
-
-/**
-*@IsGranted("ROLE_USER")
-*
-*/
 #[Route('/offre')]
 class OffreController extends AbstractController
 {
@@ -26,6 +21,12 @@ class OffreController extends AbstractController
             'offres' => $offreRepository->findAll(),
         ]);
     }
+
+    /**
+     * Require ROLE_SUPER_ADMIN only for this action
+     *
+     * @IsGranted("ROLE_ENTREPRISE")
+     */
 
     #[Route('/new', name: 'app_offre_new', methods: ['GET', 'POST'])]
     public function new(Request $request, OffreRepository $offreRepository): Response
