@@ -1,0 +1,118 @@
+
+<!doctype html>
+<html class="no-js " lang="fr">
+
+
+<head>
+<title>:: HelloJob :: {% block title %} Home {% endblock %}</title>
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
+
+<link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
+<link rel="stylesheet" href="{{asset('assets/plugins/bootstrap/css/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/plugins/jvectormap/jquery-jvectormap-2.0.3.min.css')}}"/>
+<link rel="stylesheet" href="{{asset('assets/plugins/charts-c3/plugin.css')}}"/>
+<link href="{{asset('asset/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css')}}" rel="stylesheet" />
+<link href="{{asset('asset/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+<link rel="stylesheet" href="{{asset('assets/plugins/morrisjs/morris.min.css')}}" />
+<link rel="stylesheet" href="{{asset('assets/css/style.min.css')}}" />
+
+ {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+
+{% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+</head>
+
+<body class="theme-blush">
+
+<!-- Overlay For Sidebars -->
+<div class="overlay"></div>
+
+<!-- Main Search -->
+<div id="search">
+    <button id="close" type="button" class="close btn btn-primary btn-icon btn-icon-mini btn-round">x</button>
+    <form>
+      <input type="search" value="" placeholder="Search..." />
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+</div>
+
+<!-- Right Icon menu Sidebar -->
+<div class="navbar-right">
+    <ul class="navbar-nav">
+        <li><a href="#search" class="main_search" title="Search..."><i class="zmdi zmdi-search"></i></a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0);" class="dropdown-toggle" title="Notifications" data-toggle="dropdown" role="button"><i class="zmdi zmdi-notifications"></i>
+                <div class="notify"><span class="heartbit"></span><span class="point"></span></div>
+            </a>
+           
+        </li>
+       <li><a href="{{path('app_logout')}}" class="mega-menu" title="Sign Out"><i class="zmdi zmdi-power"></i></a></li>
+       
+    </ul>
+</div>
+
+
+<!-- Left Sidebar -->
+{# <aside id="leftsidebar" class="sidebar">
+    <div class="navbar-brand">
+        <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
+        <a href=""><img src="{{asset('assets/images/logo.svg')}}" width="25" alt="Aero"><span class="m-l-10">HelloJob</span></a>
+    </div>
+    <div class="menu">
+        <ul class="list">
+            <li>
+                <div class="user-info">
+                    <a class="image" href="">
+                        <span class="zmdi zmdi-account-circle" style="font-size:4em ;"></span>
+                    </a>
+                    <div class="detail">
+
+                        <small>{{app.user.nom}} {{app.user.prenom}}</small>
+                    </div>
+                </div>
+            </li>
+            <li class="active open"><a href=""><i class="zmdi zmdi-home"></i><span>Dashboard</span></a></li>
+            <li><a href="{{ path('app_cv') }}" class=""><i class="zmdi zmdi-apps"></i><span>Créer CV</span></a>
+
+             </li>
+             {% if is_granted('ROLE_ADMIN') %}
+             <li class=""><a href="{{ path('app_offre_index') }}"><i class="zmdi zmdi-home"></i><span>Gérer les offres</span></a></li>
+             {% endif %}
+            
+
+             {% if is_granted('ROLE_ADMIN') %}
+               <li class=""><a href="{{ path('app_crud_entreprise_index') }}"><i class="zmdi zmdi-home"></i><span>Gérer les entreprises</span></a></li>
+            {% endif %}
+
+
+        </ul>
+    </div>
+</aside> #}
+
+<!-- Right Sidebar -->
+
+
+<!-- Main Content -->
+
+<section class="content">
+  {% block body %}
+
+  {% endblock %}
+</section>
+
+
+<!-- Jquery Core Js -->
+
+
+</body>
+
+
+</html>

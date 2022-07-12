@@ -27,6 +27,10 @@ class Entreprise
     #[ORM\Column(type: 'string', length: 200)]
     private $localisation;
 
+    #[ORM\OneToOne(inversedBy: 'entreprise', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $User;
+
     public function __construct()
     {
         $this->offres = new ArrayCollection();
@@ -79,6 +83,18 @@ class Entreprise
     public function setLocalisation(string $localisation): self
     {
         $this->localisation = $localisation;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

@@ -31,6 +31,11 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            $user->setPhone('indefini');
+            $user->setResidence('indefini');
+            $user->setBiographie('indefini');
+            $user->setRoles(["ROLE_USER"]);
+
             $entityManager->persist($user);
             $entityManager->flush();
             // do anything else you need here, like send an email

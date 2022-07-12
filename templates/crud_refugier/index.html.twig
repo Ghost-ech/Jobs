@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Refugier index{% endblock %}
+
+{% block body %}
+    <h1>Refugier index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Info_supp</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for refugier in refugiers %}
+            <tr>
+                <td>{{ refugier.id }}</td>
+                <td>{{ refugier.infoSupp }}</td>
+                <td>
+                    <a href="{{ path('app_crud_refugier_show', {'id': refugier.id}) }}">show</a>
+                    <a href="{{ path('app_crud_refugier_edit', {'id': refugier.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_crud_refugier_new') }}">Create new</a>
+{% endblock %}

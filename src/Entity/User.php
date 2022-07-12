@@ -33,7 +33,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $prenom;
 
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(type: 'string', length: 255)]
     private $phone;
 
     #[ORM\Column(type: 'string', length: 200)]
@@ -41,6 +41,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 300)]
     private $biographie;
+
+    #[ORM\OneToOne(mappedBy: 'User', targetEntity: Entreprise::class, cascade: ['persist', 'remove'])]
+    private $entreprise;
+
+    #[ORM\OneToOne(mappedBy: 'User', targetEntity: Refugier::class, cascade: ['persist', 'remove'])]
+    private $refugier;
 
    
     
@@ -142,12 +148,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
 
 
-    public function getPhone(): ?int
+    public function getPhone(): ?string
     {
         return $this->phone;
     }
 
-    public function setPhone(int $phone): self
+    public function setPhone(string $phone): self
     {
         $this->phone = $phone;
 
@@ -176,6 +182,45 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->biographie = $biographie;
 
         return $this;
+    }
+
+    public function getEntreprise(): ?Entreprise
+    {
+        return $this->entreprise;
+    }
+
+    public function setEntreprise(Entreprise $entreprise): self
+    {
+        // set the owning side of the relation if necessary
+        if ($entreprise->getUser() !== $this) {
+            $entreprise->setUser($this);
+        }
+
+        $this->entreprise = $entreprise;
+
+        return $this;
+    }
+
+    public function getRefugier(): ?Refugier
+    {
+        return $this->refugier;
+    }
+
+    public function setRefugier(Refugier $refugier): self
+    {
+        // set the owning side of the relation if necessary
+        if ($refugier->getUser() !== $this) {
+            $refugier->setUser($this);
+        }
+
+        $this->refugier = $refugier;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return  $this->nom;
     }
 
 }

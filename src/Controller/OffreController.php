@@ -23,7 +23,7 @@ class OffreController extends AbstractController
     }
 
     /**
-     * Require ROLE_SUPER_ADMIN only for this action
+     * Require ROLE_ENTREPRISE only for this action
      *
      * @IsGranted("ROLE_ENTREPRISE")
      */

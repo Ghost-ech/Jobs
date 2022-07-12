@@ -32,6 +32,10 @@ class LookupController extends AbstractController
         return $this->redirectToRoute('app_entreprise');
     }
 
+    /* if($this->getUser() -> getRoles()[0] == 'ROLE_REFUGIER'){
+        return $this->redirectToRoute('app_refugier');
+    } */
+
         return $this->render('lookup/index.html.twig', [
             'controller_name' => 'LookupController',
         ]);

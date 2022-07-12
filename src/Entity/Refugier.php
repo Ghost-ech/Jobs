@@ -26,6 +26,10 @@ class Refugier
     #[ORM\JoinColumn(nullable: false)]
     private $Cv;
 
+    #[ORM\OneToOne(inversedBy: 'refugier', targetEntity: User::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $User;
+
     public function __construct()
     {
         $this->cvs = new ArrayCollection();
@@ -66,6 +70,18 @@ class Refugier
     public function setCv(?Cv $Cv): self
     {
         $this->Cv = $Cv;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->User;
+    }
+
+    public function setUser(User $User): self
+    {
+        $this->User = $User;
 
         return $this;
     }

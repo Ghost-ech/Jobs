@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Refugier{% endblock %}
+
+{% block body %}
+    <h1>Refugier</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ refugier.id }}</td>
+            </tr>
+            <tr>
+                <th>Info_supp</th>
+                <td>{{ refugier.infoSupp }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_crud_refugier_index') }}">back to list</a>
+
+    <a href="{{ path('app_crud_refugier_edit', {'id': refugier.id}) }}">edit</a>
+
+    {{ include('crud_refugier/_delete_form.html.twig') }}
+{% endblock %}

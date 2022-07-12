@@ -1,6 +1,6 @@
-{% extends 'base_entreprise.html.twig' %}
+{% extends 'base_user.html.twig' %}
 
-{% block title %}Hello EntrepriseController!{% endblock %}
+{% block title %}Hello UserController!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,9 +9,11 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ app.user.nom }}! ✅</h1>
+    <h1>Bienvenue {{ app.user.nom }}! ✅</h1>
 
-    Bienvenue!!!
-    
+   <p>Bienvenue sur HelloJob. patientez que un administrateur vous attribut un role</p>
+    <ul>
+        
+    </ul>
 </div>
 {% endblock %}
